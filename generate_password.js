@@ -35,11 +35,16 @@ function generatePassword() {
     collection = collection.concat(symbols.split(''))
   }
 
-
-
+  // remove things user don't need ( filter, includes )
+  if (option.excludeCharacters) {
+    collection = collection.filter(character => !option.excludeCharacters.includes(character))
+    // return !option.excludeCharacters.includes(character)
+    // if (option.excludeCharacters.includes(character)) {
+    //   return false
+    // }
+    // return true
+  }
   console.log('collection', collection)
-
-  // remove things user don't need
 
   // start generating password
 
