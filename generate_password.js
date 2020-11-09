@@ -1,3 +1,9 @@
+// sample a element in collection
+function sample(collection) {
+  let randomIndex = Math.floor(Math.random() * collection.length)
+  return collection[randomIndex]
+}
+
 function generatePassword() {
   // define things user might want
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
@@ -6,47 +12,51 @@ function generatePassword() {
   const symbols = '`~!@$%^&*()-_+={}[]|;:"<>,.?/'
 
   // define dummy date
-  const option = {
+  const options = {
     length: '12',
     lowercase: 'on',
     uppercase: 'on',
     numbers: 'on',
-    symbols: 'on',
-    excludeCharacters: '04'
+    // symbols: 'on',
+    excludeCharacters: '40'
   }
-  console.log('option', option)
 
   // create a collection to store things user picked up
   let collection = []
 
-  if (option.lowercase === 'on') {
+  if (options.lowercase === 'on') {
     collection = collection.concat(lowerCaseLetters.split(''))
   }
 
-  if (option.uppercase === 'on') {
+  if (options.uppercase === 'on') {
     collection = collection.concat(upperCaseLetters.split(''))
   }
 
-  if (option.numbers === 'on') {
+  if (options.numbers === 'on') {
     collection = collection.concat(numbers.split(''))
   }
 
-  if (option.symbols === 'on') {
+  if (options.symbols === 'on') {
     collection = collection.concat(symbols.split(''))
   }
 
   // remove things user don't need ( filter, includes )
-  if (option.excludeCharacters) {
-    collection = collection.filter(character => !option.excludeCharacters.includes(character))
+  if (options.excludeCharacters) {
+    collection = collection.filter(character => !options.excludeCharacters.includes(character))
     // return !option.excludeCharacters.includes(character)
     // if (option.excludeCharacters.includes(character)) {
     //   return false
     // }
     // return true
   }
-  console.log('collection', collection)
 
-  // start generating password
+  // start generating password 
+  let password = ''
+  for (let i = 1; i <= options.length; i++) {
+    password += sample(collection)
+  }
+  console.log('password', password)
+
 
   // return password
   console.log('this function will generate password.')
