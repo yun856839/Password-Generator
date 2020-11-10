@@ -1,25 +1,16 @@
-// sample a element in collection
-function sample(collection) {
-  let randomIndex = Math.floor(Math.random() * collection.length)
-  return collection[randomIndex]
+// define sample function to randomly return an item in an array
+function sample(array) {
+  let index = Math.floor(Math.random() * array.length)
+  return array[index]
 }
 
-function generatePassword() {
+// define generatePassword function
+function generatePassword(options) {
   // define things user might want
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
   const upperCaseLetters = lowerCaseLetters.toUpperCase()
   const numbers = '1234567890'
   const symbols = '`~!@$%^&*()-_+={}[]|;:"<>,.?/'
-
-  // define dummy date
-  const options = {
-    length: '12',
-    lowercase: 'on',
-    uppercase: 'on',
-    numbers: 'on',
-    // symbols: 'on',
-    excludeCharacters: '40'
-  }
 
   // create a collection to store things user picked up
   let collection = []
@@ -52,13 +43,13 @@ function generatePassword() {
 
   // start generating password 
   let password = ''
-  for (let i = 1; i <= options.length; i++) {
+  for (let i = 0; i < options.length; i++) {
     password += sample(collection)
   }
-  console.log('password', password)
-
 
   // return password
-  console.log('this function will generate password.')
+  return password
 }
-generatePassword()
+
+// export generatePassword function for other files to use
+module.exports = generatePassword
